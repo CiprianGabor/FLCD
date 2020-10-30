@@ -1,0 +1,17 @@
+[
+integer number.
+read number.
+if (number=0&&number==1)
+[
+show ("Is_not_a_prime_number").
+stop.
+]
+for (i=2;i<=n/2;i++)
+if (n%i==0)
+[
+show ("Is_not_a_prime_number").
+stop.
+]
+show ("Is_a_prime_number")
+stop.
+]

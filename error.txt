@@ -1,0 +1,8 @@
+[
+integer a. 
+read a. 
+if (a>2)
+[
+show ("a is bigger then 2) 
+]
+]

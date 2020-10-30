@@ -1,0 +1,19 @@
+[
+integer a, b, c.
+read a.
+read b.
+read c.
+if (a>b>c)
+[
+show ("A_is_the_bigger_one").
+]
+elseif (b>a>c)
+[
+show ("B_is_the_bigger_one").
+]
+else
+[
+show ("C_is_the_bigger_one").
+]
+stop.
+]
