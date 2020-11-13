@@ -1,0 +1,14 @@
+FA
+->states::=letter | letter{letter}{digit}
+
+letter ::= "A" | "B" | . ..| "Z"|"a"|"b"|...|"z"
+
+digit ::= "0" | "1" |...| "9"
+
+->alphabet::=letter{letter}
+
+->initialStates::=states
+
+->finalStates::=states{states}
+
+->transition::=[state alphabet state]
