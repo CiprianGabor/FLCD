@@ -7,8 +7,10 @@ digit ::= "0" | "1" |...| "9"
 
 ->alphabet::=letter{letter}
 
-->initialStates::=states
+->initialState::=states
 
 ->finalStates::=states{states}
 
-->transition::=[state alphabet state]
+->transition::=state alphabet state
+
+->transitions::transition{transition}

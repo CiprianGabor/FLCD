@@ -42,9 +42,61 @@ class Automata
     string initialState;
     vector<string> finalStates;
     vector<Transition> transitions;
+    bool DFA=false;
     Automata(string filename)
     {
         readData(filename);
+        checkTran();
+    }
+    void checkTran(){
+        for(Transition tr1 : this->transitions)
+        {
+            int i=0;
+            for(Transition tr2:this->transitions)
+            {
+                if(tr1.initialState==tr2.initialState&&tr1.literal==tr2.literal)
+                    i++;
+            }
+            if(i>=2)
+                return;
+        }
+        this->DFA=true;
+    }
+    void checkSequence(string sequence){
+        string sq="";
+        sq+=sequence[0];
+        string nextState;
+        for(Transition tr:this->transitions)
+            {
+                if(tr.initialState==this->initialState&&sq==tr.literal)
+                {
+                    nextState=tr.nextState;
+                    break;
+                }
+            }
+        
+        for(int i=1;i<sequence.size();i++)
+        {   
+            sq="";
+            sq+=sequence[i];
+            for (Transition tr:this->transitions)
+                if(tr.initialState==nextState&&sq==tr.literal)
+                {
+                    nextState=tr.nextState;
+                    break;
+                }
+            
+        }
+        for(string s :this->finalStates)
+        {
+            if(s==nextState)
+                {
+                    cout<<"Accepted!";
+                    return;
+                }
+        }
+        cout<<"Not Accepted";
+
     }
     void readData(string filename){
         ifstream myFA(filename);
@@ -142,6 +194,7 @@ void printMenu()
     cout<<"2---Print alphabet"<<endl;
     cout<<"3---Print all transition"<<endl;
     cout<<"4---Print set of final states"<<endl;
+    cout<<"5---Insert a sequence"<<endl;
     cout<<"0---Exit"<<endl;
     cout<<"Choose a number:  ";
 }
@@ -152,6 +205,7 @@ void run()
     while(true)
     {
         printMenu();
+        
         cin>>a;
         cout<<endl;
         if(a==1)
@@ -169,6 +223,17 @@ void run()
         else if(a==4)
         {
             at.printFinalStates();
+        }
+        else if(a==5){
+            if(at.DFA==false)
+                cout<<"Not a DFA!!!";
+            else
+            {
+                string sequence;
+                cin>>sequence;
+                at.checkSequence(sequence);
+            }
+            
         }
         else
         {
